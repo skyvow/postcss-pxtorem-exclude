@@ -6,6 +6,7 @@ var pxRegex = require('./lib/pixel-unit-regex');
 var filterPropList = require('./lib/filter-prop-list');
 
 var defaults = {
+    exclude: null,
     rootValue: 16,
     unitPrecision: 5,
     selectorBlackList: [],
@@ -24,7 +25,7 @@ var legacyOptions = {
     'propWhiteList': 'propList'
 };
 
-module.exports = postcss.plugin('postcss-pxtorem', function (options) {
+module.exports = postcss.plugin('postcss-pxtorem-exclude', function (options) {
 
     convertLegacyOptions(options);
 
@@ -34,6 +35,12 @@ module.exports = postcss.plugin('postcss-pxtorem', function (options) {
     var satisfyPropList = createPropListMatcher(opts.propList);
 
     return function (css) {
+
+        // Exclude folder
+        if (options.exclude && css.source.input.file.match(options.exclude) !== null) {
+            result.root = css;
+            return
+        }
 
         css.walkDecls(function (decl, i) {
             // This should be the fastest test and will remove most declarations
