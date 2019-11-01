@@ -1,11 +1,11 @@
-# postcss-pxtorem [![NPM version](https://badge.fury.io/js/postcss-pxtorem.svg)](http://badge.fury.io/js/postcss-pxtorem)
+# postcss-pxtorem-exclude [![NPM version](https://badge.fury.io/js/postcss-pxtorem-exclude.svg)](http://badge.fury.io/js/postcss-pxtorem-exclude)
 
 A plugin for [PostCSS](https://github.com/ai/postcss) that generates rem units from pixel units.
 
 ## Install
 
 ```shell
-$ npm install postcss-pxtorem --save-dev
+$ npm install postcss-pxtorem-exclude --save-dev
 ```
 
 ## Usage
@@ -40,7 +40,7 @@ h1 {
 ```js
 var fs = require('fs');
 var postcss = require('postcss');
-var pxtorem = require('postcss-pxtorem');
+var pxtorem = require('postcss-pxtorem-exclude');
 var css = fs.readFileSync('main.css', 'utf8');
 var options = {
     replace: false
@@ -61,6 +61,7 @@ Type: `Object | Null`
 Default:
 ```js
 {
+    exclude: null,
     rootValue: 16,
     unitPrecision: 5,
     propList: ['font', 'font-size', 'line-height', 'letter-spacing'],
@@ -71,6 +72,7 @@ Default:
 }
 ```
 
+- `exclude` (RegExp) Files to exclude. Example: `/node_modules|folder_name/i`
 - `rootValue` (Number) The root element font size.
 - `unitPrecision` (Number) The decimal numbers to allow the REM units to grow to.
 - `propList` (Array) The properties that can change from px to rem.
@@ -95,7 +97,7 @@ Default:
 var gulp = require('gulp');
 var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
-var pxtorem = require('postcss-pxtorem');
+var pxtorem = require('postcss-pxtorem-exclude');
 
 gulp.task('css', function () {
 
@@ -123,7 +125,7 @@ Currently, the easiest way to have a single property ignored is to use a capital
     font-size: 16px; // converted to 1rem
 }
 
-// `Px` or `PX` is ignored by `postcss-pxtorem` but still accepted by browsers
+// `Px` or `PX` is ignored by `postcss-pxtorem-exclude` but still accepted by browsers
 .ignore {
     border: 1Px solid; // ignored
     border-width: 2PX; // ignored

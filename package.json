@@ -1,14 +1,14 @@
 {
-  "name": "postcss-pxtorem",
-  "description": "A CSS post-processor that converts px to rem.",
-  "version": "4.0.1",
-  "author": "cuth",
+  "name": "postcss-pxtorem-exclude",
+  "description": "Based on postcss-pxtorem added the exclude folder option.",
+  "version": "0.0.1",
+  "author": "skyvow",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:cuth/postcss-pxtorem.git"
+    "url": "git@github.com:skyvow/postcss-pxtorem-exclude.git"
   },
-  "bugs": "https://github.com/cuth/postcss-pxtorem/issues",
+  "bugs": "https://github.com/skyvow/postcss-pxtorem-exclude/issues",
   "main": "index.js",
   "scripts": {
     "test": "jasmine-node spec"
