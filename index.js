@@ -34,7 +34,7 @@ module.exports = postcss.plugin('postcss-pxtorem-exclude', function (options) {
 
     var satisfyPropList = createPropListMatcher(opts.propList);
 
-    return function (css) {
+    return function (css, result) {
 
         // Exclude folder
         if (options.exclude && css.source.input.file.match(options.exclude) !== null) {
